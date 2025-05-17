@@ -3,7 +3,9 @@
  */
 
 package com.mycompany.redneuronal;
-
+import Funcionalidad.Operaciones;
+import Funcionalidad.Principal;
+import java.util.Scanner;
 /**
  *
  * @author Maria Guadalupe MH
@@ -11,6 +13,11 @@ package com.mycompany.redneuronal;
 public class RedNeuronal {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Operaciones ob= new Operaciones();
+        Principal obP=new Principal();
+        Scanner leer=new Scanner(System.in);
+     
+        obP.Entrenar();
+        
     }
 }
