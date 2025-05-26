@@ -4,8 +4,13 @@
  */
 package Interfaz;
 
+import Funcionalidad.Operaciones;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -16,10 +21,12 @@ public class Gui extends javax.swing.JFrame {
     /**
      * Creates new form Gui
      */
+    PanelDibujo lienzo;
     public Gui() {
         initComponents();
-
-        PanelDibujo lienzo = new PanelDibujo();
+        Operaciones ob =new Operaciones(); 
+        
+        lienzo = new PanelDibujo();
         lienzo.setBounds(jPanel10.getX(), jPanel10.getY(), jPanel10.getWidth(), jPanel10.getHeight());
         lienzo.setOpaque(false); // Para que no tape el fondo (si quieres ver lo de atrás)
 
@@ -35,6 +42,10 @@ public class Gui extends javax.swing.JFrame {
         // Refrescar GUI
         contenedor.revalidate();
         contenedor.repaint();
+        
+        
+        
+        
     }
 
     /**
@@ -254,7 +265,7 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\menos.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\menos.png")); // NOI18N
 
         jTextField48.setBackground(new java.awt.Color(255, 255, 255));
         jTextField48.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -267,7 +278,7 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\mas.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\mas.png")); // NOI18N
 
         jTextField49.setBackground(new java.awt.Color(255, 255, 255));
         jTextField49.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -315,7 +326,7 @@ public class Gui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField48, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                        .addComponent(jTextField48)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -456,7 +467,7 @@ public class Gui extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(153, 255, 255));
         jButton7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\clip.png")); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\clip.png")); // NOI18N
         jButton7.setText("Ingresar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,13 +478,18 @@ public class Gui extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(153, 255, 255));
         jButton8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\entrenamiento-cerebral.png")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\entrenamiento-cerebral.png")); // NOI18N
         jButton8.setText("Entrenar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(51, 255, 153));
         jButton9.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\reconocimiento-de-patrones.png")); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\reconocimiento-de-patrones.png")); // NOI18N
         jButton9.setText("Reconocer");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,7 +500,7 @@ public class Gui extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(51, 255, 153));
         jButton10.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton10.setForeground(new java.awt.Color(0, 0, 0));
-        jButton10.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\barra-grafica.png")); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\barra-grafica.png")); // NOI18N
         jButton10.setText("Grafica");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -495,8 +511,13 @@ public class Gui extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(255, 255, 51));
         jButton11.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
-        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\cepillo-de-pintura.png")); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\cepillo-de-pintura.png")); // NOI18N
         jButton11.setText("Limpiar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -542,7 +563,7 @@ public class Gui extends javax.swing.JFrame {
 
         jPanel6.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 240, 130));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\GPT.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\GPT.png")); // NOI18N
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 130, 140));
 
         jTextField7.setEditable(false);
@@ -618,6 +639,16 @@ public class Gui extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        Operaciones ob =new Operaciones(); 
+        lienzo.repaint(); // Asegura que se actualice
+        SwingUtilities.invokeLater(() -> {
+            BufferedImage imagen20x20 = ob.capturarYReescalar20x20(lienzo);
+            JLabel etiquetaImagen = new JLabel(new ImageIcon(imagen20x20));
+            jPanel9.removeAll();
+            jPanel9.add(etiquetaImagen);
+            jPanel9.revalidate();
+            jPanel9.repaint();
+        });
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -659,6 +690,16 @@ public class Gui extends javax.swing.JFrame {
     private void jTextField50jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField50jTextField19ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField50jTextField19ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        PanelDibujo ob=new PanelDibujo();
+        ob.limpiar();
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -702,44 +743,23 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField40;
     private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField42;
@@ -753,9 +773,6 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField50;
     private javax.swing.JTextField jTextField51;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
