@@ -4,6 +4,8 @@
 
 package com.mycompany.redneuronal;
 
+import Interfaz.Gui;
+
 /**
  *
  * @author Maria Guadalupe MH
@@ -11,6 +13,7 @@ package com.mycompany.redneuronal;
 public class RedNeuronal {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Gui ob=new Gui();
+        ob.setVisible(true);
     }
 }
