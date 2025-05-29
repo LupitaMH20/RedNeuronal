@@ -1,5 +1,7 @@
 package Funcionalidad;
 public class Tdamatriz {
+    
+    private int[][] nNormalizados;
     private double[][] normalizados;
     private double[][] wij;
     private double[][] wjk;
@@ -15,6 +17,9 @@ public class Tdamatriz {
     private int[][] tks;
 
     // Getters y Setters
+    public int[][] getnNormalizados() { return nNormalizados; }
+    public void setnNormalizados(int[][] nNormalizados) { this.nNormalizados = nNormalizados; }
+    
     public double[][] getNormalizados() { return normalizados; }
     public void setNormalizados(double[][] normalizados) { this.normalizados = normalizados; }
 
@@ -64,6 +69,11 @@ public class Tdamatriz {
         }
     }
 
+    public void inicializar(int width, int height)
+    {
+        int totalValores=width*height;
+        nNormalizados=new int[5][totalValores];
+    }
 
     public int[][] getTks() { return tks; }
     public void setTks(int[][] tks) { this.tks = tks; }
@@ -71,6 +81,7 @@ public class Tdamatriz {
     // Método para imprimir un resumen de qué datos están inicializados
     public void imprimirResumen() {
         System.out.println("Resumen de RedNeuronalData:");
+        System.out.println("No normalizados: " + (nNormalizados != null));
         System.out.println("normalizados: " + (normalizados != null));
         System.out.println("wij: " + (wij != null));
         System.out.println("wjk: " + (wjk != null));
@@ -85,4 +96,5 @@ public class Tdamatriz {
         System.out.println("vrms: " + (vrms != null));
         System.out.println("tks: " + (tks != null));
     }
+
 }

@@ -5,9 +5,15 @@
 package Interfaz;
 
 import Funcionalidad.Operaciones;
+import Funcionalidad.Principal;
+import Funcionalidad.Tdamatriz;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -22,32 +28,31 @@ public class Gui extends javax.swing.JFrame {
      * Creates new form Gui
      */
     PanelDibujo lienzo;
+    PanelDibujo lienzo2;
+    int cont = 0;
+
     public Gui() {
         initComponents();
-        Operaciones ob =new Operaciones(); 
-        
+        Operaciones ob = new Operaciones();
+        Tdamatriz tda = new Tdamatriz();
+
         lienzo = new PanelDibujo();
-        lienzo.setBounds(jPanel10.getX(), jPanel10.getY(), jPanel10.getWidth(), jPanel10.getHeight());
-        lienzo.setOpaque(false); // Para que no tape el fondo (si quieres ver lo de atrás)
+        lienzo.setBounds(0, 0, jPanel10.getWidth(), jPanel10.getHeight());
+        lienzo.setOpaque(false);
 
-        // Obtener el contenedor padre del jPanel10
-        Container contenedor = jPanel10.getParent();
+        jPanel10.add(lienzo);
+        jPanel10.revalidate();
+        jPanel10.repaint();
 
-        // Agregar el lienzo directamente al contenedor principal
-        contenedor.add(lienzo);
-
-        // Asegurar que se pinte por encima
-        contenedor.setComponentZOrder(lienzo, 0); // 0 = arriba de todos
-
-        // Refrescar GUI
-        contenedor.revalidate();
-        contenedor.repaint();
-        
-        
-        
-        
     }
 
+    private Principal principal=new Principal();
+    int[][] tk = {
+            {0, 0, 1},
+            {0, 1, 0},
+            {0, 1, 1},
+            {1, 0, 0},
+            {1, 0, 1},};
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,29 +73,29 @@ public class Gui extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jPanel22 = new javax.swing.JPanel();
         jTextField38 = new javax.swing.JTextField();
-        jTextField39 = new javax.swing.JTextField();
-        jTextField40 = new javax.swing.JTextField();
-        jTextField41 = new javax.swing.JTextField();
+        niu = new javax.swing.JTextField();
+        alfa = new javax.swing.JTextField();
+        epocas = new javax.swing.JTextField();
         jTextField42 = new javax.swing.JTextField();
         jTextField43 = new javax.swing.JTextField();
         jTextField44 = new javax.swing.JTextField();
         jTextField45 = new javax.swing.JTextField();
-        jTextField46 = new javax.swing.JTextField();
+        rms = new javax.swing.JTextField();
         jTextField47 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField48 = new javax.swing.JTextField();
+        menor = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField49 = new javax.swing.JTextField();
+        mas = new javax.swing.JTextField();
         jTextField50 = new javax.swing.JTextField();
-        jTextField51 = new javax.swing.JTextField();
+        capasO = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jTextField5 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        ingresar = new javax.swing.JButton();
+        entrenar = new javax.swing.JButton();
+        reconocer = new javax.swing.JButton();
+        grafica = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -187,22 +192,22 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        jTextField39.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField39.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jTextField39.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField39.addActionListener(new java.awt.event.ActionListener() {
+        niu.setBackground(new java.awt.Color(255, 255, 255));
+        niu.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        niu.setForeground(new java.awt.Color(0, 0, 0));
+        niu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField39jTextField1ActionPerformed(evt);
+                niujTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField40.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField40.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jTextField40.setForeground(new java.awt.Color(0, 0, 0));
+        alfa.setBackground(new java.awt.Color(255, 255, 255));
+        alfa.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        alfa.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTextField41.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField41.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jTextField41.setForeground(new java.awt.Color(0, 0, 0));
+        epocas.setBackground(new java.awt.Color(255, 255, 255));
+        epocas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        epocas.setForeground(new java.awt.Color(0, 0, 0));
 
         jTextField42.setEditable(false);
         jTextField42.setBackground(new java.awt.Color(0, 0, 0));
@@ -251,9 +256,9 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        jTextField46.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField46.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jTextField46.setForeground(new java.awt.Color(0, 0, 0));
+        rms.setBackground(new java.awt.Color(255, 255, 255));
+        rms.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        rms.setForeground(new java.awt.Color(0, 0, 0));
 
         jTextField47.setEditable(false);
         jTextField47.setBackground(new java.awt.Color(0, 0, 0));
@@ -267,12 +272,13 @@ public class Gui extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\menos.png")); // NOI18N
 
-        jTextField48.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField48.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jTextField48.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField48.addActionListener(new java.awt.event.ActionListener() {
+        menor.setBackground(new java.awt.Color(255, 255, 255));
+        menor.setColumns(4);
+        menor.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        menor.setForeground(new java.awt.Color(0, 0, 0));
+        menor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField48jTextField8ActionPerformed(evt);
+                menorjTextField8ActionPerformed(evt);
             }
         });
 
@@ -280,12 +286,13 @@ public class Gui extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\mas.png")); // NOI18N
 
-        jTextField49.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField49.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jTextField49.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField49.addActionListener(new java.awt.event.ActionListener() {
+        mas.setBackground(new java.awt.Color(255, 255, 255));
+        mas.setColumns(4);
+        mas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mas.setForeground(new java.awt.Color(0, 0, 0));
+        mas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField49jTextField17ActionPerformed(evt);
+                masjTextField17ActionPerformed(evt);
             }
         });
 
@@ -294,7 +301,7 @@ public class Gui extends javax.swing.JFrame {
         jTextField50.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         jTextField50.setForeground(new java.awt.Color(255, 255, 0));
         jTextField50.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField50.setText("Alfa");
+        jTextField50.setText("Capas O.");
         jTextField50.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
         jTextField50.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,9 +309,9 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        jTextField51.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField51.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jTextField51.setForeground(new java.awt.Color(0, 0, 0));
+        capasO.setBackground(new java.awt.Color(255, 255, 255));
+        capasO.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        capasO.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -320,17 +327,17 @@ public class Gui extends javax.swing.JFrame {
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addComponent(jTextField50, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField51))
+                        .addComponent(capasO))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
                         .addComponent(jTextField47, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField48)
+                        .addComponent(menor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(mas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,15 +348,15 @@ public class Gui extends javax.swing.JFrame {
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(jTextField39))
+                                .addComponent(niu))
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField40))
+                                .addComponent(alfa))
                             .addGroup(jPanel22Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField46, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField41))))))
+                                    .addComponent(rms, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(epocas))))))
                 .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
@@ -359,33 +366,33 @@ public class Gui extends javax.swing.JFrame {
                 .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(niu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alfa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(epocas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(menor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField50, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(capasO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -464,47 +471,49 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(153, 255, 255));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\clip.png")); // NOI18N
-        jButton7.setText("Ingresar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        ingresar.setBackground(new java.awt.Color(153, 255, 255));
+        ingresar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        ingresar.setForeground(new java.awt.Color(0, 0, 0));
+        ingresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\clip.png")); // NOI18N
+        ingresar.setText("Ingresar");
+        ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                ingresarActionPerformed(evt);
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(153, 255, 255));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\entrenamiento-cerebral.png")); // NOI18N
-        jButton8.setText("Entrenar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        entrenar.setBackground(new java.awt.Color(153, 255, 255));
+        entrenar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        entrenar.setForeground(new java.awt.Color(0, 0, 0));
+        entrenar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\entrenamiento-cerebral.png")); // NOI18N
+        entrenar.setText("Entrenar");
+        entrenar.setEnabled(false);
+        entrenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                entrenarActionPerformed(evt);
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(51, 255, 153));
-        jButton9.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\reconocimiento-de-patrones.png")); // NOI18N
-        jButton9.setText("Reconocer");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        reconocer.setBackground(new java.awt.Color(51, 255, 153));
+        reconocer.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        reconocer.setForeground(new java.awt.Color(0, 0, 0));
+        reconocer.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\reconocimiento-de-patrones.png")); // NOI18N
+        reconocer.setText("Reconocer");
+        reconocer.setEnabled(false);
+        reconocer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                reconocerActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(51, 255, 153));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(0, 0, 0));
-        jButton10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\barra-grafica.png")); // NOI18N
-        jButton10.setText("Grafica");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        grafica.setBackground(new java.awt.Color(51, 255, 153));
+        grafica.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        grafica.setForeground(new java.awt.Color(0, 0, 0));
+        grafica.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\barra-grafica.png")); // NOI18N
+        grafica.setText("Grafica");
+        grafica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                graficaActionPerformed(evt);
             }
         });
 
@@ -531,12 +540,12 @@ public class Gui extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entrenar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(reconocer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(grafica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(8, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -550,12 +559,12 @@ public class Gui extends javax.swing.JFrame {
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton9))
+                    .addComponent(ingresar)
+                    .addComponent(reconocer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton10))
+                    .addComponent(entrenar)
+                    .addComponent(grafica))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -633,27 +642,49 @@ public class Gui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
+        lienzo.verificarTrazos();
+        if (cont == 4) {
+            ingresar.setEnabled(false);
+            entrenar.setEnabled(true);
+        }
+        BufferedImage original = lienzo.crearImagen20x20();
+        principal.valoresImg(cont, original); // Usar la instancia única
+        cont++;
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        Operaciones ob =new Operaciones(); 
-        lienzo.repaint(); // Asegura que se actualice
-        SwingUtilities.invokeLater(() -> {
-            BufferedImage imagen20x20 = ob.capturarYReescalar20x20(lienzo);
-            JLabel etiquetaImagen = new JLabel(new ImageIcon(imagen20x20));
-            jPanel9.removeAll();
-            jPanel9.add(etiquetaImagen);
-            jPanel9.revalidate();
-            jPanel9.repaint();
-        });
-    }//GEN-LAST:event_jButton9ActionPerformed
+        lienzo.limpiar();
+    }//GEN-LAST:event_ingresarActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void reconocerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reconocerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+        BufferedImage img = lienzo.crearImagen20x20();
+        int c = Integer.parseInt(capasO.getText());
+        double rmen=Double.parseDouble(menor.getText());
+        double rmax=Double.parseDouble(mas.getText());
+       
+
+        //principal.predecir(img, NORMAL, ERROR, NORMAL);
+        principal.predecir(img,c, rmen, rmax,tk);
+        
+    }//GEN-LAST:event_reconocerActionPerformed
+
+    private void graficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficaActionPerformed
+        // TODO add your handling code here:
+       
+//        SwingUtilities.invokeLater(() -> {
+//            BufferedImage imagen20x20 = lienzo.crearImagenDesdeFila(0, principal.getTda());
+//            JLabel etiquetaImagen = new JLabel(new ImageIcon(imagen20x20.getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
+//
+//            jPanel10.removeAll();
+//            jPanel10.setLayout(new FlowLayout()); 
+//            jPanel10.add(etiquetaImagen);
+//            jPanel10.revalidate();
+//            jPanel10.repaint();
+//
+//        });
+        lienzo.dibujarDesdeFila(0, principal.getTda());
+        
+    }//GEN-LAST:event_graficaActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
@@ -663,9 +694,9 @@ public class Gui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField38jTextField6ActionPerformed
 
-    private void jTextField39jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField39jTextField1ActionPerformed
+    private void niujTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_niujTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField39jTextField1ActionPerformed
+    }//GEN-LAST:event_niujTextField1ActionPerformed
 
     private void jTextField43jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField43jTextField14ActionPerformed
         // TODO add your handling code here:
@@ -679,26 +710,40 @@ public class Gui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField45ActionPerformed
 
-    private void jTextField48jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField48jTextField8ActionPerformed
+    private void menorjTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menorjTextField8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField48jTextField8ActionPerformed
+    }//GEN-LAST:event_menorjTextField8ActionPerformed
 
-    private void jTextField49jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField49jTextField17ActionPerformed
+    private void masjTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masjTextField17ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField49jTextField17ActionPerformed
+    }//GEN-LAST:event_masjTextField17ActionPerformed
 
     private void jTextField50jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField50jTextField19ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField50jTextField19ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void entrenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrenarActionPerformed
+        double n = Double.parseDouble(niu.getText());
+        double a = Double.parseDouble(alfa.getText());
+        double r = Double.parseDouble(rms.getText());
+        int e = Integer.parseInt(epocas.getText());
+        int c = Integer.parseInt(capasO.getText());
+        double rmen=Double.parseDouble(menor.getText());
+        double rmax=Double.parseDouble(mas.getText());
+       
+
+        
+
+        // Usar la instancia única que ya tiene los datos de las imágenes
+        principal.entrenarRed(tk, n, a, r, e, c,rmen,rmax); // Quitamos el parámetro tda que no se usa
+        entrenar.setEnabled(false);
+        reconocer.setEnabled(true);
+        
+    }//GEN-LAST:event_entrenarActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        PanelDibujo ob=new PanelDibujo();
-        ob.limpiar();
+        lienzo.limpiar();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
@@ -737,11 +782,13 @@ public class Gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
+    private javax.swing.JTextField alfa;
+    private javax.swing.JTextField capasO;
+    private javax.swing.JButton entrenar;
+    private javax.swing.JTextField epocas;
+    private javax.swing.JButton grafica;
+    private javax.swing.JButton ingresar;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -759,20 +806,18 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField40;
-    private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField42;
     private javax.swing.JTextField jTextField43;
     private javax.swing.JTextField jTextField44;
     private javax.swing.JTextField jTextField45;
-    private javax.swing.JTextField jTextField46;
     private javax.swing.JTextField jTextField47;
-    private javax.swing.JTextField jTextField48;
-    private javax.swing.JTextField jTextField49;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField50;
-    private javax.swing.JTextField jTextField51;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField mas;
+    private javax.swing.JTextField menor;
+    private javax.swing.JTextField niu;
+    private javax.swing.JButton reconocer;
+    private javax.swing.JTextField rms;
     // End of variables declaration//GEN-END:variables
 }

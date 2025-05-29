@@ -8,30 +8,6 @@ import javax.swing.JPanel;
 
 public class Operaciones {
 
-    public static BufferedImage capturarYReescalar20x20(JPanel panel) {
-        int anchoDestino = 20;
-        int altoDestino = 20;
-
-        BufferedImage original = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = original.createGraphics();
-        panel.printAll(g); // o panel.paint(g)
-        g.dispose();
-
-        BufferedImage escalada = new BufferedImage(anchoDestino, altoDestino, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = escalada.createGraphics();
-
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g2.drawImage(original, 0, 0, anchoDestino, altoDestino, null);
-        g2.dispose();
-
-        return escalada;
-    }
-
-    
-    
     //Metodo para normalizar los patrones 
     public double[][] NormalizarPatrones(int[][] matrizn) {
         int filas = matrizn.length;
@@ -130,6 +106,7 @@ public class Operaciones {
         return rk;
     }
 
+
     public double encontrarE(int[][] tk, double[][] sk) {
         double errorRms;
         double suma = 0;
@@ -196,163 +173,124 @@ public class Operaciones {
         return new double[][][]{deltawjk, wjk};
     }
 
+//    public double[][][] thetak(double[][] errork, double[][] deltathetakanterior, double[][] thetakanterior) {
+//        double[][] deltathetak = new double[2][1];
+//        double[][] thetak = new double[2][1];
+//
+//        int nPatrones = errork.length;
+//        double niu = 0.35;
+//        double alfa = 0.2;
+//
+//        for (int p = 0; p < nPatrones; p++) {
+//            for (int i = 0; i < 2; i++) {
+//                for (int j = 0; j < 1; j++) {
+//                    // Calcula el nuevo delta para este patrón y conexión
+//                    double theta = (niu * errork[p][i]) + (alfa * deltathetakanterior[i][j]);
+//                    deltathetak[i][j] = theta;
+//                    thetak[i][j] = thetakanterior[i][j] + deltathetak[i][j];
+//
+//                }
+//            }
+//
+//            for (int i = 0; i < 2; i++) {
+//                for (int j = 0; j < 1; j++) {
+//                    deltathetakanterior[i][j] = deltathetak[i][j];
+//                    thetakanterior[i][j] = thetak[i][j];
+//                }
+//            }
+//
+//        }
+//
+//        return new double[][][]{deltathetak, thetak};
+//    }
+
     public double[][][] thetak(double[][] errork, double[][] deltathetakanterior, double[][] thetakanterior) {
-        double[][] deltathetak = new double[2][1];
-        double[][] thetak = new double[2][1];
+        int nSalidas = errork[0].length; // Calcula el número real de salidas
+        double[][] deltathetak = new double[nSalidas][1];
+        double[][] thetak = new double[nSalidas][1];
 
         int nPatrones = errork.length;
         double niu = 0.35;
         double alfa = 0.2;
 
         for (int p = 0; p < nPatrones; p++) {
-            for (int i = 0; i < 2; i++) {
-                for (int j = 0; j < 1; j++) {
-                    // Calcula el nuevo delta para este patrón y conexión
-                    double theta = (niu * errork[p][i]) + (alfa * deltathetakanterior[i][j]);
-                    deltathetak[i][j] = theta;
-                    thetak[i][j] = thetakanterior[i][j] + deltathetak[i][j];
+            for (int i = 0; i < nSalidas; i++) {
+                double delta = (niu * errork[p][i]) + (alfa * deltathetakanterior[i][0]);
+                deltathetak[i][0] = delta;
+                thetak[i][0] = thetakanterior[i][0] + deltathetak[i][0];
 
-                }
+                // Acumuladores para la siguiente época
+                deltathetakanterior[i][0] = deltathetak[i][0];
+                thetakanterior[i][0] = thetak[i][0];
             }
-
-            for (int i = 0; i < 2; i++) {
-                for (int j = 0; j < 1; j++) {
-                    deltathetakanterior[i][j] = deltathetak[i][j];
-                    thetakanterior[i][j] = thetak[i][j];
-                }
-            }
-
         }
 
         return new double[][][]{deltathetak, thetak};
     }
 
-    //Metodo para adaptar pesos en la capa oculta
-//    public void errorJ(double[][] sj, double[][] errork, double[][] patronesNormalizados, double[][] wjk, double niu, double alfa,
-//            double[][] deltawijanterior, double[][] wijanterior, double[][] deltathetajanterior, double[][] thetajanterior) {
-//        int nPatrones = patronesNormalizados.length;
-//        int nOcultas = wjk.length;
-//
-//        double sumak,sumak2;
-//
-//        double[][] errorj = new double[nPatrones][nOcultas];
-//        double[][] deltawij = new double[nPatrones][nOcultas];
-//        double[][] wij = new double[nPatrones][nOcultas];
-//        double[][] deltathetaj = new double[2][1];
-//        double[][] thetaj = new double[2][1];
-//        
-//        System.out.println("errorK "+errork[0][0]+ "    wjk "+wjk[0][0]+" errorK "+errork[0][1]+ "    wjk "+wjk[0][1]);
-//
-//        sumak = ((errork[0][0] * wjk[0][0]) + (errork[0][1] * wjk[0][1]));
-//        System.out.println("sumaK  "+sumak+ "   sj00  "+sj[0][0]);
-//        errorj[0][0] = ((sj[0][0] * (1 - sj[0][0]) * sumak));
-//
-//        deltawij[0][0] = (niu * errorj[0][0] * patronesNormalizados[0][0]) + (alfa * deltawijanterior[0][0]);
-//        wij[0][0] = (wijanterior[0][0] + deltawij[0][0]);
-//        deltawij[1][0] = (niu * errorj[0][0] * patronesNormalizados[0][1]) + (alfa * deltawijanterior[1][0]);
-//        wij[1][0] = (wijanterior[1][0] + deltawij[1][0]);
-//        deltawij[2][0] = (niu * errorj[0][0] * patronesNormalizados[0][2]) + (alfa * deltawijanterior[2][0]);
-//        wij[2][0] = (wijanterior[2][0] + deltawij[2][0]);
-//
-//        deltathetaj[0][0] = (niu * errorj[0][0]) + (alfa * deltathetajanterior[0][0]);
-//        thetaj[0][0] = (thetajanterior[0][0] + deltathetaj[0][0]);
-//
-//        System.out.println("errorK "+errork[0][0]+ "    wjk "+wjk[1][0]+" errorK "+errork[0][1]+ "    wjk "+wjk[1][1]);
-//        sumak2 = ((errork[0][0] * wjk[1][0]) + (errork[0][1] * wjk[1][1]));
-//        System.out.println("sumaK2  "+sumak2+ "   sj01  "+sj[0][1]);
-//        errorj[0][1] = ((sj[0][1] * (1 - sj[0][1]) * sumak2));
-//
-//        deltawij[0][1] = (niu * errorj[0][1] * patronesNormalizados[0][0]) + (alfa * deltawijanterior[0][1]);
-//        wij[0][1] = (wijanterior[0][1] + deltawij[0][1]);
-//        deltawij[1][1] = (niu * errorj[0][1] * patronesNormalizados[0][1]) + (alfa * deltawijanterior[1][1]);
-//        wij[1][1] = (wijanterior[1][1] + deltawij[1][1]);
-//        deltawij[2][1] = (niu * errorj[0][1] * patronesNormalizados[0][2]) + (alfa * deltawijanterior[2][1]);
-//        wij[2][1] = (wijanterior[2][1] + deltawij[2][1]);
-//
-//        deltathetaj[1][0] = (niu * errorj[0][1]) + (alfa * deltathetajanterior[1][0]);
-//        thetaj[1][0] = (thetajanterior[1][0] + deltathetaj[1][0]);
-//
-//          IMPRESIÓN DE ARREGLOS
-//    System.out.println("errorj:");
-//    imprimirMatriz(errorj);
-//
-//    System.out.println("deltawij:");
-//    imprimirMatriz(deltawij);
-//
-//    System.out.println("wij:");
-//    imprimirMatriz(wij);
-//
-//    System.out.println("deltathetaj:");
-//    imprimirMatriz(deltathetaj);
-//
-//    System.out.println("thetaj:");
-//    imprimirMatriz(thetaj);
-//
-//    }
     
     public void errorJ(double[][] sj, double[][] errork, double[][] patronesNormalizados, double[][] wjk, double niu, double alfa,
-                   double[][] deltawijanterior, double[][] wijanterior, double[][] deltathetajanterior, double[][] thetajanterior) {
+            double[][] deltawijanterior, double[][] wijanterior, double[][] deltathetajanterior, double[][] thetajanterior) {
 
-    int nPatrones = patronesNormalizados.length;
-    int nEntradas = patronesNormalizados[0].length;
-    int nOcultas = sj[0].length;
-    int nSalidas = errork[0].length;
+        int nPatrones = patronesNormalizados.length;
+        int nEntradas = patronesNormalizados[0].length;
+        int nOcultas = sj[0].length;
+        int nSalidas = errork[0].length;
 
-    double[][] errorj = new double[nPatrones][nOcultas];
-    double[][] deltawij = new double[nEntradas][nOcultas];
-    double[][] wij = new double[nEntradas][nOcultas];
-    double[][] deltathetaj = new double[nOcultas][1];
-    double[][] thetaj = new double[nOcultas][1];
+        double[][] errorj = new double[nPatrones][nOcultas];
+        double[][] deltawij = new double[nEntradas][nOcultas];
+        double[][] wij = new double[nEntradas][nOcultas];
+        double[][] deltathetaj = new double[nOcultas][1];
+        double[][] thetaj = new double[nOcultas][1];
 
-    for (int p = 0; p < nPatrones; p++) {
-        for (int j = 0; j < nOcultas; j++) {
-            double sumak = 0.0;
-            for (int k = 0; k < nSalidas; k++) {
-                sumak += errork[p][k] * wjk[j][k];
+        for (int p = 0; p < nPatrones; p++) {
+            for (int j = 0; j < nOcultas; j++) {
+                double sumak = 0.0;
+                for (int k = 0; k < nSalidas; k++) {
+                    sumak += errork[p][k] * wjk[j][k];
+                }
+
+                // Calcula el error de la neurona oculta j para el patrón p
+                errorj[p][j] = sj[p][j] * (1 - sj[p][j]) * sumak;
+
+                // Actualiza pesos de entrada a la capa oculta
+                for (int i = 0; i < nEntradas; i++) {
+                    deltawij[i][j] = niu * errorj[p][j] * patronesNormalizados[p][i] + alfa * deltawijanterior[i][j];
+                    wij[i][j] = wijanterior[i][j] + deltawij[i][j];
+                }
+
+                // Actualiza el sesgo (theta) para la neurona j
+                deltathetaj[j][0] = niu * errorj[p][j] + alfa * deltathetajanterior[j][0];
+                thetaj[j][0] = thetajanterior[j][0] + deltathetaj[j][0];
             }
-
-            // Calcula el error de la neurona oculta j para el patrón p
-            errorj[p][j] = sj[p][j] * (1 - sj[p][j]) * sumak;
-
-            // Actualiza pesos de entrada a la capa oculta
-            for (int i = 0; i < nEntradas; i++) {
-                deltawij[i][j] = niu * errorj[p][j] * patronesNormalizados[p][i] + alfa * deltawijanterior[i][j];
-                wij[i][j] = wijanterior[i][j] + deltawij[i][j];
-            }
-
-            // Actualiza el sesgo (theta) para la neurona j
-            deltathetaj[j][0] = niu * errorj[p][j] + alfa * deltathetajanterior[j][0];
-            thetaj[j][0] = thetajanterior[j][0] + deltathetaj[j][0];
         }
+
+        // Impresión de matrices
+        System.out.println("errorj:");
+        imprimirMatriz(errorj);
+
+        System.out.println("deltawij:");
+        imprimirMatriz(deltawij);
+
+        System.out.println("wij:");
+        imprimirMatriz(wij);
+
+        System.out.println("deltathetaj:");
+        imprimirMatriz(deltathetaj);
+
+        System.out.println("thetaj:");
+        imprimirMatriz(thetaj);
     }
 
-    // Impresión de matrices
-    System.out.println("errorj:");
-    imprimirMatriz(errorj);
-
-    System.out.println("deltawij:");
-    imprimirMatriz(deltawij);
-
-    System.out.println("wij:");
-    imprimirMatriz(wij);
-
-    System.out.println("deltathetaj:");
-    imprimirMatriz(deltathetaj);
-
-    System.out.println("thetaj:");
-    imprimirMatriz(thetaj);
-}
-
-    
     // Método auxiliar para imprimir cualquier matriz 2D
-public void imprimirMatriz(double[][] matriz) {
-    for (int i = 0; i < matriz.length; i++) {
-        for (int j = 0; j < matriz[i].length; j++) {
-            System.out.print(matriz[i][j] + "\t");
+    public void imprimirMatriz(double[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + "\t");
+            }
+            System.out.println();
         }
-        System.out.println();
     }
-}
 
     // Método que genera una matriz 5x5 con valores aleatorios entre 0 y 255
     //Filas i
@@ -371,6 +309,3 @@ public void imprimirMatriz(double[][] matriz) {
     }
 
 }
-
-
-
