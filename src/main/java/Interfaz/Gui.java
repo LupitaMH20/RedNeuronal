@@ -97,8 +97,14 @@ public class Gui extends javax.swing.JFrame {
         reconocer = new javax.swing.JButton();
         grafica = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jPanel15 = new javax.swing.JPanel();
+        jTextField6 = new javax.swing.JTextField();
+        ingresar1 = new javax.swing.JButton();
+        entrenar1 = new javax.swing.JButton();
+        reconocer1 = new javax.swing.JButton();
+        grafica1 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -270,7 +276,6 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\menos.png")); // NOI18N
 
         menor.setBackground(new java.awt.Color(255, 255, 255));
         menor.setColumns(4);
@@ -284,7 +289,6 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\mas.png")); // NOI18N
 
         mas.setBackground(new java.awt.Color(255, 255, 255));
         mas.setColumns(4);
@@ -474,7 +478,6 @@ public class Gui extends javax.swing.JFrame {
         ingresar.setBackground(new java.awt.Color(153, 255, 255));
         ingresar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         ingresar.setForeground(new java.awt.Color(0, 0, 0));
-        ingresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\clip.png")); // NOI18N
         ingresar.setText("Ingresar");
         ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -485,7 +488,6 @@ public class Gui extends javax.swing.JFrame {
         entrenar.setBackground(new java.awt.Color(153, 255, 255));
         entrenar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         entrenar.setForeground(new java.awt.Color(0, 0, 0));
-        entrenar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\entrenamiento-cerebral.png")); // NOI18N
         entrenar.setText("Entrenar");
         entrenar.setEnabled(false);
         entrenar.addActionListener(new java.awt.event.ActionListener() {
@@ -497,7 +499,6 @@ public class Gui extends javax.swing.JFrame {
         reconocer.setBackground(new java.awt.Color(51, 255, 153));
         reconocer.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         reconocer.setForeground(new java.awt.Color(0, 0, 0));
-        reconocer.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\reconocimiento-de-patrones.png")); // NOI18N
         reconocer.setText("Reconocer");
         reconocer.setEnabled(false);
         reconocer.addActionListener(new java.awt.event.ActionListener() {
@@ -509,7 +510,6 @@ public class Gui extends javax.swing.JFrame {
         grafica.setBackground(new java.awt.Color(51, 255, 153));
         grafica.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         grafica.setForeground(new java.awt.Color(0, 0, 0));
-        grafica.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\barra-grafica.png")); // NOI18N
         grafica.setText("Grafica");
         grafica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -520,7 +520,6 @@ public class Gui extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(255, 255, 51));
         jButton11.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
-        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\cepillo-de-pintura.png")); // NOI18N
         jButton11.setText("Limpiar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -567,13 +566,10 @@ public class Gui extends javax.swing.JFrame {
                     .addComponent(grafica))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jPanel6.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 240, 130));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\GPT.png")); // NOI18N
-        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 130, 140));
+        jPanel6.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 240, 140));
 
         jTextField7.setEditable(false);
         jTextField7.setBackground(new java.awt.Color(0, 0, 0));
@@ -588,6 +584,121 @@ public class Gui extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 110, -1));
+
+        jPanel15.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
+
+        jTextField6.setEditable(false);
+        jTextField6.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField6.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
+        jTextField6.setForeground(new java.awt.Color(255, 255, 0));
+        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField6.setText("Patrones");
+        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+
+        ingresar1.setBackground(new java.awt.Color(51, 255, 0));
+        ingresar1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        ingresar1.setForeground(new java.awt.Color(0, 0, 0));
+        ingresar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        ingresar1.setText("Patron 1");
+        ingresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresar1ActionPerformed(evt);
+            }
+        });
+
+        entrenar1.setBackground(new java.awt.Color(51, 255, 0));
+        entrenar1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        entrenar1.setForeground(new java.awt.Color(0, 0, 0));
+        entrenar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        entrenar1.setText("Patron 3");
+        entrenar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entrenar1ActionPerformed(evt);
+            }
+        });
+
+        reconocer1.setBackground(new java.awt.Color(51, 255, 0));
+        reconocer1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        reconocer1.setForeground(new java.awt.Color(0, 0, 0));
+        reconocer1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        reconocer1.setText("Patron 2");
+        reconocer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reconocer1ActionPerformed(evt);
+            }
+        });
+
+        grafica1.setBackground(new java.awt.Color(51, 255, 0));
+        grafica1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        grafica1.setForeground(new java.awt.Color(0, 0, 0));
+        grafica1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        grafica1.setText("Patron 4");
+        grafica1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grafica1ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setBackground(new java.awt.Color(51, 255, 0));
+        jButton12.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(0, 0, 0));
+        jButton12.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        jButton12.setText("Patron 5");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ingresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entrenar1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(reconocer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(grafica1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ingresar1)
+                    .addComponent(reconocer1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entrenar1)
+                    .addComponent(grafica1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton12)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel6.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 240, -1));
 
         jPanel2.add(jPanel6);
 
@@ -746,6 +857,30 @@ public class Gui extends javax.swing.JFrame {
         lienzo.limpiar();
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void ingresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingresar1ActionPerformed
+
+    private void entrenar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrenar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_entrenar1ActionPerformed
+
+    private void reconocer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reconocer1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reconocer1ActionPerformed
+
+    private void grafica1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafica1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_grafica1ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -785,17 +920,21 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JTextField alfa;
     private javax.swing.JTextField capasO;
     private javax.swing.JButton entrenar;
+    private javax.swing.JButton entrenar1;
     private javax.swing.JTextField epocas;
     private javax.swing.JButton grafica;
+    private javax.swing.JButton grafica1;
     private javax.swing.JButton ingresar;
+    private javax.swing.JButton ingresar1;
     private javax.swing.JButton jButton11;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton12;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
@@ -813,11 +952,13 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField47;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField50;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField mas;
     private javax.swing.JTextField menor;
     private javax.swing.JTextField niu;
     private javax.swing.JButton reconocer;
+    private javax.swing.JButton reconocer1;
     private javax.swing.JTextField rms;
     // End of variables declaration//GEN-END:variables
 }
