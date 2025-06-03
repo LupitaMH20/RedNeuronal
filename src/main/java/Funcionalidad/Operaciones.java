@@ -8,6 +8,17 @@ import javax.swing.JPanel;
 
 public class Operaciones {
 
+//    public double[][] NormalizarPatrones(int[][] patrones) {
+//        double[][] normalizados = new double[patrones.length][patrones[0].length];
+//        for (int i = 0; i < patrones.length; i++) {
+//            for (int j = 0; j < patrones[0].length; j++) {
+//                normalizados[i][j] = patrones[i][j] / 255.0; 
+//            }
+//        }
+//        return normalizados;
+//    }
+    
+    
     //Metodo para normalizar los patrones 
     public double[][] NormalizarPatrones(int[][] matrizn) {
         int filas = matrizn.length;
@@ -173,36 +184,6 @@ public class Operaciones {
         return new double[][][]{deltawjk, wjk};
     }
 
-//    public double[][][] thetak(double[][] errork, double[][] deltathetakanterior, double[][] thetakanterior) {
-//        double[][] deltathetak = new double[2][1];
-//        double[][] thetak = new double[2][1];
-//
-//        int nPatrones = errork.length;
-//        double niu = 0.35;
-//        double alfa = 0.2;
-//
-//        for (int p = 0; p < nPatrones; p++) {
-//            for (int i = 0; i < 2; i++) {
-//                for (int j = 0; j < 1; j++) {
-//                    // Calcula el nuevo delta para este patrón y conexión
-//                    double theta = (niu * errork[p][i]) + (alfa * deltathetakanterior[i][j]);
-//                    deltathetak[i][j] = theta;
-//                    thetak[i][j] = thetakanterior[i][j] + deltathetak[i][j];
-//
-//                }
-//            }
-//
-//            for (int i = 0; i < 2; i++) {
-//                for (int j = 0; j < 1; j++) {
-//                    deltathetakanterior[i][j] = deltathetak[i][j];
-//                    thetakanterior[i][j] = thetak[i][j];
-//                }
-//            }
-//
-//        }
-//
-//        return new double[][][]{deltathetak, thetak};
-//    }
 
     public double[][][] thetak(double[][] errork, double[][] deltathetakanterior, double[][] thetakanterior) {
         int nSalidas = errork[0].length; // Calcula el número real de salidas
@@ -265,21 +246,7 @@ public class Operaciones {
             }
         }
 
-        // Impresión de matrices
-        System.out.println("errorj:");
-        imprimirMatriz(errorj);
-
-        System.out.println("deltawij:");
-        imprimirMatriz(deltawij);
-
-        System.out.println("wij:");
-        imprimirMatriz(wij);
-
-        System.out.println("deltathetaj:");
-        imprimirMatriz(deltathetaj);
-
-        System.out.println("thetaj:");
-        imprimirMatriz(thetaj);
+      
     }
 
     // Método auxiliar para imprimir cualquier matriz 2D

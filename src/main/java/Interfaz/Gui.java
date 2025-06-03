@@ -10,6 +10,7 @@ import Funcionalidad.Tdamatriz;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -28,8 +29,9 @@ public class Gui extends javax.swing.JFrame {
      * Creates new form Gui
      */
     PanelDibujo lienzo;
-    PanelDibujo lienzo2;
+    PanelVisualizacion nuevoLienzo;
     int cont = 0;
+    int b=0;
 
     public Gui() {
         initComponents();
@@ -37,12 +39,20 @@ public class Gui extends javax.swing.JFrame {
         Tdamatriz tda = new Tdamatriz();
 
         lienzo = new PanelDibujo();
+        nuevoLienzo = new PanelVisualizacion();
+        
         lienzo.setBounds(0, 0, jPanel10.getWidth(), jPanel10.getHeight());
         lienzo.setOpaque(false);
+        nuevoLienzo.setBounds(0, 0, jPanel9.getWidth(), jPanel9.getHeight());
+        nuevoLienzo.setOpaque(false);
 
         jPanel10.add(lienzo);
         jPanel10.revalidate();
         jPanel10.repaint();
+        
+        jPanel9.add(nuevoLienzo);
+        jPanel9.revalidate();
+        jPanel9.repaint();
 
     }
 
@@ -88,8 +98,10 @@ public class Gui extends javax.swing.JFrame {
         mas = new javax.swing.JTextField();
         jTextField50 = new javax.swing.JTextField();
         capasO = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
+        panelContenedor = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jTextField5 = new javax.swing.JTextField();
         ingresar = new javax.swing.JButton();
@@ -101,10 +113,10 @@ public class Gui extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
         ingresar1 = new javax.swing.JButton();
-        entrenar1 = new javax.swing.JButton();
-        reconocer1 = new javax.swing.JButton();
-        grafica1 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        ingresar3 = new javax.swing.JButton();
+        ingresar2 = new javax.swing.JButton();
+        ingresar4 = new javax.swing.JButton();
+        ingresar5 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -119,6 +131,7 @@ public class Gui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 51));
+        setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -201,6 +214,7 @@ public class Gui extends javax.swing.JFrame {
         niu.setBackground(new java.awt.Color(255, 255, 255));
         niu.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         niu.setForeground(new java.awt.Color(0, 0, 0));
+        niu.setText("0.35");
         niu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 niujTextField1ActionPerformed(evt);
@@ -210,10 +224,12 @@ public class Gui extends javax.swing.JFrame {
         alfa.setBackground(new java.awt.Color(255, 255, 255));
         alfa.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         alfa.setForeground(new java.awt.Color(0, 0, 0));
+        alfa.setText("0.25");
 
         epocas.setBackground(new java.awt.Color(255, 255, 255));
         epocas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         epocas.setForeground(new java.awt.Color(0, 0, 0));
+        epocas.setText("25000");
 
         jTextField42.setEditable(false);
         jTextField42.setBackground(new java.awt.Color(0, 0, 0));
@@ -265,6 +281,7 @@ public class Gui extends javax.swing.JFrame {
         rms.setBackground(new java.awt.Color(255, 255, 255));
         rms.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         rms.setForeground(new java.awt.Color(0, 0, 0));
+        rms.setText("0.01");
 
         jTextField47.setEditable(false);
         jTextField47.setBackground(new java.awt.Color(0, 0, 0));
@@ -276,11 +293,13 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\menos.png")); // NOI18N
 
         menor.setBackground(new java.awt.Color(255, 255, 255));
         menor.setColumns(4);
         menor.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         menor.setForeground(new java.awt.Color(0, 0, 0));
+        menor.setText("-0.3");
         menor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menorjTextField8ActionPerformed(evt);
@@ -289,11 +308,13 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\mas.png")); // NOI18N
 
         mas.setBackground(new java.awt.Color(255, 255, 255));
         mas.setColumns(4);
         mas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         mas.setForeground(new java.awt.Color(0, 0, 0));
+        mas.setText("0.3");
         mas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 masjTextField17ActionPerformed(evt);
@@ -316,6 +337,7 @@ public class Gui extends javax.swing.JFrame {
         capasO.setBackground(new java.awt.Color(255, 255, 255));
         capasO.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         capasO.setForeground(new java.awt.Color(0, 0, 0));
+        capasO.setText("25");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -399,31 +421,56 @@ public class Gui extends javax.swing.JFrame {
                     .addComponent(capasO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanel7.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setText("Red Neuronal");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(336, 336, 336)
+                .addComponent(jLabel1)
+                .addContainerGap(327, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
@@ -443,21 +490,21 @@ public class Gui extends javax.swing.JFrame {
         jPanel6.setForeground(new java.awt.Color(255, 255, 0));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel13.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
+        panelContenedor.setBackground(new java.awt.Color(0, 0, 0));
+        panelContenedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
+        panelContenedor.setLayout(panelContenedorLayout);
+        panelContenedorLayout.setHorizontalGroup(
+            panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 508, Short.MAX_VALUE)
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelContenedorLayout.setVerticalGroup(
+            panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 228, Short.MAX_VALUE)
         );
 
-        jPanel6.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 510, 230));
+        jPanel6.add(panelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 510, 230));
 
         jPanel14.setBackground(new java.awt.Color(0, 0, 0));
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255)));
@@ -478,6 +525,7 @@ public class Gui extends javax.swing.JFrame {
         ingresar.setBackground(new java.awt.Color(153, 255, 255));
         ingresar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         ingresar.setForeground(new java.awt.Color(0, 0, 0));
+        ingresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\clip.png")); // NOI18N
         ingresar.setText("Ingresar");
         ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -488,6 +536,7 @@ public class Gui extends javax.swing.JFrame {
         entrenar.setBackground(new java.awt.Color(153, 255, 255));
         entrenar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         entrenar.setForeground(new java.awt.Color(0, 0, 0));
+        entrenar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\entrenamiento-cerebral.png")); // NOI18N
         entrenar.setText("Entrenar");
         entrenar.setEnabled(false);
         entrenar.addActionListener(new java.awt.event.ActionListener() {
@@ -499,6 +548,7 @@ public class Gui extends javax.swing.JFrame {
         reconocer.setBackground(new java.awt.Color(51, 255, 153));
         reconocer.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         reconocer.setForeground(new java.awt.Color(0, 0, 0));
+        reconocer.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\reconocimiento-de-patrones.png")); // NOI18N
         reconocer.setText("Reconocer");
         reconocer.setEnabled(false);
         reconocer.addActionListener(new java.awt.event.ActionListener() {
@@ -510,7 +560,9 @@ public class Gui extends javax.swing.JFrame {
         grafica.setBackground(new java.awt.Color(51, 255, 153));
         grafica.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         grafica.setForeground(new java.awt.Color(0, 0, 0));
+        grafica.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\barra-grafica.png")); // NOI18N
         grafica.setText("Grafica");
+        grafica.setEnabled(false);
         grafica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 graficaActionPerformed(evt);
@@ -520,6 +572,7 @@ public class Gui extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(255, 255, 51));
         jButton11.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
+        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\cepillo-de-pintura.png")); // NOI18N
         jButton11.setText("Limpiar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,7 +657,7 @@ public class Gui extends javax.swing.JFrame {
         ingresar1.setBackground(new java.awt.Color(51, 255, 0));
         ingresar1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         ingresar1.setForeground(new java.awt.Color(0, 0, 0));
-        ingresar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        ingresar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
         ingresar1.setText("Patron 1");
         ingresar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,47 +665,47 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        entrenar1.setBackground(new java.awt.Color(51, 255, 0));
-        entrenar1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        entrenar1.setForeground(new java.awt.Color(0, 0, 0));
-        entrenar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
-        entrenar1.setText("Patron 3");
-        entrenar1.addActionListener(new java.awt.event.ActionListener() {
+        ingresar3.setBackground(new java.awt.Color(51, 255, 0));
+        ingresar3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        ingresar3.setForeground(new java.awt.Color(0, 0, 0));
+        ingresar3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        ingresar3.setText("Patron 3");
+        ingresar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entrenar1ActionPerformed(evt);
+                ingresar3ActionPerformed(evt);
             }
         });
 
-        reconocer1.setBackground(new java.awt.Color(51, 255, 0));
-        reconocer1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        reconocer1.setForeground(new java.awt.Color(0, 0, 0));
-        reconocer1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
-        reconocer1.setText("Patron 2");
-        reconocer1.addActionListener(new java.awt.event.ActionListener() {
+        ingresar2.setBackground(new java.awt.Color(51, 255, 0));
+        ingresar2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        ingresar2.setForeground(new java.awt.Color(0, 0, 0));
+        ingresar2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        ingresar2.setText("Patron 2");
+        ingresar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reconocer1ActionPerformed(evt);
+                ingresar2ActionPerformed(evt);
             }
         });
 
-        grafica1.setBackground(new java.awt.Color(51, 255, 0));
-        grafica1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        grafica1.setForeground(new java.awt.Color(0, 0, 0));
-        grafica1.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
-        grafica1.setText("Patron 4");
-        grafica1.addActionListener(new java.awt.event.ActionListener() {
+        ingresar4.setBackground(new java.awt.Color(51, 255, 0));
+        ingresar4.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        ingresar4.setForeground(new java.awt.Color(0, 0, 0));
+        ingresar4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        ingresar4.setText("Patron 4");
+        ingresar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                grafica1ActionPerformed(evt);
+                ingresar4ActionPerformed(evt);
             }
         });
 
-        jButton12.setBackground(new java.awt.Color(51, 255, 0));
-        jButton12.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(0, 0, 0));
-        jButton12.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\Documents\\Inteligencia Artificial\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
-        jButton12.setText("Patron 5");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        ingresar5.setBackground(new java.awt.Color(51, 255, 0));
+        ingresar5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        ingresar5.setForeground(new java.awt.Color(0, 0, 0));
+        ingresar5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Rebe G\\Documents\\NetBeansProjects\\RedNeuronal\\src\\main\\java\\Interfaz\\Imagenes\\patron-de-bloqueo.png")); // NOI18N
+        ingresar5.setText("Patron 5");
+        ingresar5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                ingresar5ActionPerformed(evt);
             }
         });
 
@@ -669,15 +722,15 @@ public class Gui extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ingresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entrenar1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ingresar3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(reconocer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(grafica1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ingresar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ingresar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ingresar5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
         );
         jPanel15Layout.setVerticalGroup(
@@ -688,13 +741,13 @@ public class Gui extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ingresar1)
-                    .addComponent(reconocer1))
+                    .addComponent(ingresar2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(entrenar1)
-                    .addComponent(grafica1))
+                    .addComponent(ingresar3)
+                    .addComponent(ingresar4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12)
+                .addComponent(ingresar5)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -710,7 +763,7 @@ public class Gui extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -718,7 +771,7 @@ public class Gui extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -760,7 +813,8 @@ public class Gui extends javax.swing.JFrame {
             entrenar.setEnabled(true);
         }
         BufferedImage original = lienzo.crearImagen20x20();
-        principal.valoresImg(cont, original); // Usar la instancia única
+        BufferedImage original2 = lienzo.crearImagen150x150();
+        principal.valoresImg(cont, original,original2); // Usar la instancia única
         cont++;
 
         lienzo.limpiar();
@@ -768,33 +822,50 @@ public class Gui extends javax.swing.JFrame {
 
     private void reconocerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reconocerActionPerformed
         // TODO add your handling code here:
-        BufferedImage img = lienzo.crearImagen20x20();
-        int c = Integer.parseInt(capasO.getText());
-        double rmen=Double.parseDouble(menor.getText());
-        double rmax=Double.parseDouble(mas.getText());
-       
-
-        //principal.predecir(img, NORMAL, ERROR, NORMAL);
-        principal.predecir(img,c, rmen, rmax,tk);
+        nuevoLienzo.limpiar();
+        nuevoLienzo.setPreferredSize(new Dimension(150, 150)); 
         
+        BufferedImage img= lienzo.crearImagen20x20();
+        
+        int c = Integer.parseInt(capasO.getText());
+        double rmen = Double.parseDouble(menor.getText());
+        double rmax = Double.parseDouble(mas.getText());
+
+        int fila = principal.predecir(img, c, rmen, rmax, tk);
+
+        
+        if (fila >= 0 && fila < 5) {
+            jPanel9.removeAll();
+            jPanel9.setLayout(new FlowLayout()); 
+
+            
+            jPanel9.add(nuevoLienzo);
+            jPanel9.revalidate();
+            jPanel9.repaint();
+
+            SwingUtilities.invokeLater(() -> {
+                nuevoLienzo.dibujarDesdeFila(fila, principal.getTda());
+            });
+        }
+        if(fila == -1)
+        {
+            nuevoLienzo.limpiar();
+        }
+
     }//GEN-LAST:event_reconocerActionPerformed
 
     private void graficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficaActionPerformed
-        // TODO add your handling code here:
-       
-//        SwingUtilities.invokeLater(() -> {
-//            BufferedImage imagen20x20 = lienzo.crearImagenDesdeFila(0, principal.getTda());
-//            JLabel etiquetaImagen = new JLabel(new ImageIcon(imagen20x20.getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
-//
-//            jPanel10.removeAll();
-//            jPanel10.setLayout(new FlowLayout()); 
-//            jPanel10.add(etiquetaImagen);
-//            jPanel10.revalidate();
-//            jPanel10.repaint();
-//
-//        });
-        lienzo.dibujarDesdeFila(0, principal.getTda());
-        
+
+        double[] vrms = principal.getTda().getVrms(); 
+
+        PanelGrafica grafica = new PanelGrafica(vrms);
+
+        panelContenedor.removeAll();
+        panelContenedor.setLayout(new BorderLayout());
+        panelContenedor.add(grafica, BorderLayout.CENTER);
+        panelContenedor.revalidate();
+        panelContenedor.repaint();
+
     }//GEN-LAST:event_graficaActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
@@ -843,18 +914,17 @@ public class Gui extends javax.swing.JFrame {
         double rmax=Double.parseDouble(mas.getText());
        
 
-        
-
-        // Usar la instancia única que ya tiene los datos de las imágenes
-        principal.entrenarRed(tk, n, a, r, e, c,rmen,rmax); // Quitamos el parámetro tda que no se usa
+        principal.entrenarRed(tk, n, a, r, e, c,rmen,rmax);
         entrenar.setEnabled(false);
         reconocer.setEnabled(true);
-        
+        grafica.setEnabled(true);
     }//GEN-LAST:event_entrenarActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         lienzo.limpiar();
+        //this.nuevoLienzo.limpiar();
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -863,23 +933,154 @@ public class Gui extends javax.swing.JFrame {
 
     private void ingresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar1ActionPerformed
         // TODO add your handling code here:
+        
+        nuevoLienzo = new PanelVisualizacion();
+        nuevoLienzo.setPreferredSize(new Dimension(150, 150)); 
+       
+        int c = Integer.parseInt(capasO.getText());
+        double rmen = Double.parseDouble(menor.getText());
+        double rmax = Double.parseDouble(mas.getText());
+
+        int fila = principal.predecir2(principal.getTda(), c, rmen, rmax, tk, 0);
+
+        
+        if (fila >= 0 && fila < 5) {
+            nuevoLienzo.limpiar();
+            jPanel9.removeAll();
+            jPanel9.setLayout(new BorderLayout()); // Asegura que se respete el tamaño
+
+           
+            jPanel9.add(nuevoLienzo, BorderLayout.CENTER);
+            jPanel9.revalidate();
+            jPanel9.repaint();
+
+            SwingUtilities.invokeLater(() -> {
+                nuevoLienzo.dibujarDesdeFila(fila, principal.getTda());
+            });
+        }
+        
+        
     }//GEN-LAST:event_ingresar1ActionPerformed
 
-    private void entrenar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrenar1ActionPerformed
+    private void ingresar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_entrenar1ActionPerformed
+       
+        nuevoLienzo = new PanelVisualizacion();
+        nuevoLienzo.setPreferredSize(new Dimension(150, 150)); 
+       
+        int c = Integer.parseInt(capasO.getText());
+        double rmen = Double.parseDouble(menor.getText());
+        double rmax = Double.parseDouble(mas.getText());
 
-    private void reconocer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reconocer1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reconocer1ActionPerformed
+        int fila = principal.predecir2(principal.getTda(), c, rmen, rmax, tk, 2);
 
-    private void grafica1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafica1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_grafica1ActionPerformed
+        
+        if (fila >= 0 && fila < 5) {
+            nuevoLienzo.limpiar();
+            jPanel9.removeAll();
+            jPanel9.setLayout(new BorderLayout()); // Asegura que se respete el tamaño
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+            
+            jPanel9.add(nuevoLienzo, BorderLayout.CENTER);
+            jPanel9.revalidate();
+            jPanel9.repaint();
+
+            SwingUtilities.invokeLater(() -> {
+                nuevoLienzo.dibujarDesdeFila(fila, principal.getTda());
+            });
+        }
+        
+    }//GEN-LAST:event_ingresar3ActionPerformed
+
+    private void ingresar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+       
+        nuevoLienzo = new PanelVisualizacion();
+        nuevoLienzo.setPreferredSize(new Dimension(150, 150)); 
+       
+        int c = Integer.parseInt(capasO.getText());
+        double rmen = Double.parseDouble(menor.getText());
+        double rmax = Double.parseDouble(mas.getText());
+
+        int fila = principal.predecir2(principal.getTda(), c, rmen, rmax, tk, 1);
+
+        
+        if (fila >= 0 && fila < 5) {
+            nuevoLienzo.limpiar();
+            jPanel9.removeAll();
+            jPanel9.setLayout(new BorderLayout()); // Asegura que se respete el tamaño
+
+            
+            jPanel9.add(nuevoLienzo,BorderLayout.CENTER);
+            jPanel9.revalidate();
+            jPanel9.repaint();
+
+            SwingUtilities.invokeLater(() -> {
+                nuevoLienzo.dibujarDesdeFila(fila, principal.getTda());
+            });
+        }
+        
+    }//GEN-LAST:event_ingresar2ActionPerformed
+
+    private void ingresar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar4ActionPerformed
+        // TODO add your handling code here:
+       
+        nuevoLienzo = new PanelVisualizacion();
+        nuevoLienzo.setPreferredSize(new Dimension(150, 150)); 
+       
+        int c = Integer.parseInt(capasO.getText());
+        double rmen = Double.parseDouble(menor.getText());
+        double rmax = Double.parseDouble(mas.getText());
+
+        int fila = principal.predecir2(principal.getTda(), c, rmen, rmax, tk, 3);
+
+        
+        if (fila >= 0 && fila < 5) {
+            nuevoLienzo.limpiar();
+            jPanel9.removeAll();
+            jPanel9.setLayout(new BorderLayout()); // Asegura que se respete el tamaño
+
+           
+            jPanel9.add(nuevoLienzo,BorderLayout.CENTER);
+            jPanel9.revalidate();
+            jPanel9.repaint();
+
+            SwingUtilities.invokeLater(() -> {
+                nuevoLienzo.dibujarDesdeFila(fila, principal.getTda());
+            });
+        }
+        
+    }//GEN-LAST:event_ingresar4ActionPerformed
+
+    private void ingresar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar5ActionPerformed
+        // TODO add your handling code here:
+        
+        nuevoLienzo = new PanelVisualizacion();
+        nuevoLienzo.setPreferredSize(new Dimension(150, 150)); 
+       
+        int c = Integer.parseInt(capasO.getText());
+        double rmen = Double.parseDouble(menor.getText());
+        double rmax = Double.parseDouble(mas.getText());
+
+        int fila = principal.predecir2(principal.getTda(), c, rmen, rmax, tk, 4);
+
+        
+        if (fila >= 0 && fila < 5) {
+            nuevoLienzo.limpiar();
+            jPanel9.removeAll();
+            jPanel9.setLayout(new BorderLayout()); // Asegura que se respete el tamaño
+
+            
+            jPanel9.add(nuevoLienzo,BorderLayout.CENTER);
+            jPanel9.revalidate();
+            jPanel9.repaint();
+
+            SwingUtilities.invokeLater(() -> {
+                nuevoLienzo.dibujarDesdeFila(fila, principal.getTda());
+            });
+        }
+        
+    }//GEN-LAST:event_ingresar5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,19 +1121,20 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JTextField alfa;
     private javax.swing.JTextField capasO;
     private javax.swing.JButton entrenar;
-    private javax.swing.JButton entrenar1;
     private javax.swing.JTextField epocas;
     private javax.swing.JButton grafica;
-    private javax.swing.JButton grafica1;
     private javax.swing.JButton ingresar;
     private javax.swing.JButton ingresar1;
+    private javax.swing.JButton ingresar2;
+    private javax.swing.JButton ingresar3;
+    private javax.swing.JButton ingresar4;
+    private javax.swing.JButton ingresar5;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
@@ -941,6 +1143,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -957,8 +1160,8 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JTextField mas;
     private javax.swing.JTextField menor;
     private javax.swing.JTextField niu;
+    private javax.swing.JPanel panelContenedor;
     private javax.swing.JButton reconocer;
-    private javax.swing.JButton reconocer1;
     private javax.swing.JTextField rms;
     // End of variables declaration//GEN-END:variables
 }

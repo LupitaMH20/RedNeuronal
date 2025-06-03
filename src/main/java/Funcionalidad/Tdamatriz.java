@@ -2,6 +2,7 @@ package Funcionalidad;
 public class Tdamatriz {
     
     private int[][] nNormalizados;
+    private int[][] Originales;
     private double[][] normalizados;
     private double[][] wij;
     private double[][] wjk;
@@ -14,9 +15,13 @@ public class Tdamatriz {
     private double[][] errorj;
     private double[][] errork;
     private double[] vrms;
+    private int[] vmax;
     private int[][] tks;
 
     // Getters y Setters
+    public int[][] getOriginales() { return Originales; }
+    public void setOriginales(int[][] Originales) { this.Originales = Originales; }
+    
     public int[][] getnNormalizados() { return nNormalizados; }
     public void setnNormalizados(int[][] nNormalizados) { this.nNormalizados = nNormalizados; }
     
@@ -29,6 +34,7 @@ public class Tdamatriz {
     public double[][] getWjk() { return wjk; }
     public void setWjk(double[][] wjk) { this.wjk = wjk; }
 
+    
     public double[][] getThetaj() { return thetaj; }
     public void setThetaj(double[][] thetaj) { this.thetaj = thetaj; }
 
@@ -56,6 +62,9 @@ public class Tdamatriz {
     public double[] getVrms() { return vrms; }
     public void setVrms(double[] vrms) { this.vrms = vrms; }
     
+    public int[] getVMax() { return vmax; }
+    public void setVMax(int[] vmax) { this.vmax = vmax; }
+    
     
     
     public void addVrms(double nuevoError) {
@@ -68,11 +77,22 @@ public class Tdamatriz {
             vrms = nuevoArray;
         }
     }
+    
+    public void addVMax(int mayor) {
+        if (vmax == null) {
+            vmax = new int[]{mayor};
+        } else {
+            int[] nuevoArray = new int[vmax.length + 1];
+            System.arraycopy(vmax, 0, nuevoArray, 0, vmax.length);
+            nuevoArray[vmax.length] = mayor;
+            vmax = nuevoArray;
+        }
+    }
 
-    public void inicializar(int width, int height)
+    public void inicializar()
     {
-        int totalValores=width*height;
-        nNormalizados=new int[5][totalValores];
+        nNormalizados=new int[5][400];
+        Originales=new int[5][22500];
     }
 
     public int[][] getTks() { return tks; }
@@ -80,21 +100,21 @@ public class Tdamatriz {
 
     // Método para imprimir un resumen de qué datos están inicializados
     public void imprimirResumen() {
-        System.out.println("Resumen de RedNeuronalData:");
+//        System.out.println("Resumen de RedNeuronalData:");
         System.out.println("No normalizados: " + (nNormalizados != null));
-        System.out.println("normalizados: " + (normalizados != null));
-        System.out.println("wij: " + (wij != null));
-        System.out.println("wjk: " + (wjk != null));
-        System.out.println("thetaj: " + (thetaj != null));
-        System.out.println("thetak: " + (thetak != null));
-        System.out.println("deltawij: " + (deltawij != null));
-        System.out.println("deltawjk: " + (deltawjk != null));
-        System.out.println("deltathetaj: " + (deltathetaj != null));
-        System.out.println("deltathetak: " + (deltathetak != null));
-        System.out.println("errorj: " + (errorj != null));
-        System.out.println("errork: " + (errork != null));
+//        System.out.println("normalizados: " + (normalizados != null));
+//        System.out.println("wij: " + (wij != null));
+//        System.out.println("wjk: " + (wjk != null));
+//        System.out.println("thetaj: " + (thetaj != null));
+//        System.out.println("thetak: " + (thetak != null));
+//        System.out.println("deltawij: " + (deltawij != null));
+//        System.out.println("deltawjk: " + (deltawjk != null));
+//        System.out.println("deltathetaj: " + (deltathetaj != null));
+//        System.out.println("deltathetak: " + (deltathetak != null));
+//        System.out.println("errorj: " + (errorj != null));
+//        System.out.println("errork: " + (errork != null));
         System.out.println("vrms: " + (vrms != null));
-        System.out.println("tks: " + (tks != null));
+        //System.out.println("tks: " + (tks != null));
     }
 
 }

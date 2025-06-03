@@ -1,59 +1,82 @@
 package Funcionalidad;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import Interfaz.PanelDibujo;
 import java.awt.image.BufferedImage;
-import javax.swing.JPanel;
 
 public class Principal {
 
     private Tdamatriz tda;
+    private int[][] mN;
 
     public Principal() {
         this.tda = new Tdamatriz();
     }
 
-    int[][] mN;
-    int[][] matriz;
-
-    public void valoresImg(int cont, BufferedImage imagen) {
-        int width = imagen.getWidth();
+    public void valoresImg(int cont, BufferedImage imagen, BufferedImage imagenOriginal) {
+        int width = imagen.getWidth(); // 20
         int height = imagen.getHeight();
-        int totalValores = width * height;
+        int widthOrig = imagenOriginal.getWidth(); // 150
+        int heightOrig = imagenOriginal.getHeight();
 
-        // Inicializar si es la primera imagen
-        if (tda.getnNormalizados() == null) {
-            tda.inicializar(width, height);
+        if (tda.getnNormalizados() == null || tda.getOriginales() == null) {
+            tda.inicializar(); 
         }
+        
 
-        // Verificar que cont no exceda el límite
-        if (cont >= tda.getnNormalizados().length) {
-            System.err.println("Error: Índice de imagen fuera de rango: " + cont);
+        if (cont >= tda.getnNormalizados().length || cont >= tda.getOriginales().length) {
+            System.err.println("Error: Índice de imagen fuera de rango o estructura no inicializada.");
             return;
         }
-
+        
+        // Guardar en nNormalizados (20x20)
         int index = 0;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int pixel = imagen.getRGB(x, y);
-
-                // Extraer componentes RGB
-                int red = (pixel >> 16) & 0xFF;
-                int green = (pixel >> 8) & 0xFF;
-                int blue = pixel & 0xFF;
-
-                // Convertir a escala de grises o usar promedio
-                int grayValue = (int) (0.299 * red + 0.587 * green + 0.114 * blue);
-
-                // Verificar límites del array
-                if (index < tda.getnNormalizados()[cont].length) {
-                    tda.getnNormalizados()[cont][index] = grayValue;
-                    index++;
-                }
+                int gray = convertirAGris(pixel);
+                tda.getnNormalizados()[cont][index++] = gray;
             }
         }
 
-        System.out.println("Imagen " + cont + " procesada correctamente. Valores guardados: " + index);
+        System.out.println("Imagen " + cont + " normalizada. Valores: " + index);
+
+        // Guardar en originales (150x150)
+        index = 0;
+        for (int y = 0; y < heightOrig; y++) {
+            for (int x = 0; x < widthOrig; x++) {
+                int pixel = imagenOriginal.getRGB(x, y);
+                int gray = convertirAGris(pixel);
+                tda.getOriginales()[cont][index++] = gray;
+            }
+        }
+
+        
+    }
+
+    public void tomarValores(BufferedImage img) {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        int totalValores = width * height;
+
+        mN = new int[1][totalValores];
+        int index = 0;
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int pixel = img.getRGB(x, y);
+                int grayValue = convertirAGris(pixel); 
+                mN[0][index++] = grayValue;
+            }
+        }
+        System.out.println("Matriz a reconocer "+mN[0].length);
+        
+    }
+
+    private int convertirAGris(int pixel) {
+        int red = (pixel >> 16) & 0xFF;
+        int green = (pixel >> 8) & 0xFF;
+        int blue = pixel & 0xFF;
+        return (int) (0.299 * red + 0.587 * green + 0.114 * blue);
     }
 
     public void entrenarRed(int[][] tk, double niu, double alfa, double rmsDeseado, int maxEpocas, int nOcultas, double rMen, double rMax) {
@@ -63,17 +86,7 @@ public class Principal {
 
         int[][] matriz = tda.getnNormalizados();
 
-//        for (int i = 0; i < matriz.length; i++) {
-//            for (int j = 0; j < matriz[0].length; j++) {
-//                System.out.print(matriz[i][j] + "\t");
-//            }
-//            System.out.println(); // Salto de línea por fila
-//        }
-        System.out.println("Matriz filas " + matriz.length);
-        System.out.println("Matriz Columnas " + matriz[0].length);
-
-        // Normalización y configuración inicial
-        double[][] patronesNormalizados = op.NormalizarPatrones(tda.getnNormalizados());
+        double[][] patronesNormalizados = op.NormalizarPatrones(matriz);
         int nEntradas = patronesNormalizados[0].length;
         int nSalidas = tk[0].length;
 
@@ -88,21 +101,17 @@ public class Principal {
         tda.setDeltathetak(op.inicializarMatrizCeros(nSalidas, 1));
 
         while (epoca < maxEpocas && error > rmsDeseado) {
-            // FORWARD
             double[][] rj = op.calcularRj(tda.getNormalizados(), tda.getWij(), tda.getThetaj());
             double[][] sj = op.calcularS(rj);
             double[][] rk = op.calcularRk(sj, tda.getWjk(), tda.getThetak(), nSalidas);
             double[][] sk = op.calcularS(rk);
 
-            // ERROR
             error = op.encontrarE(tk, sk);
-            //tda.setVrms(new double[]{error});  // Solo el actual, no histórico
             tda.addVrms(error);
-            System.out.printf("Época %d - RMS actual: %.6f%n", epoca + 1, error);
+            System.out.printf("Época %d - RMS: %.6f%n", epoca + 1, error);
 
-            // BACKWARD
             double[][] errork = op.errorK(tk, sk);
-            tda.setErrork(errork); // Actualiza error de salida
+            tda.setErrork(errork);
 
             double[][][] ajusteWjk = op.adaptarP(errork, sj, tda.getDeltawjk(), tda.getWjk());
             tda.setDeltawjk(ajusteWjk[0]);
@@ -112,9 +121,8 @@ public class Principal {
             tda.setDeltathetak(ajusteThetak[0]);
             tda.setThetak(ajusteThetak[1]);
 
-            // Adaptar capa oculta y actualizar los pesos/sesgos
             op.errorJ(sj, errork, tda.getNormalizados(), tda.getWjk(), niu, alfa,
-                    tda.getDeltawij(), tda.getWij(), tda.getDeltathetaj(), tda.getThetaj());
+                      tda.getDeltawij(), tda.getWij(), tda.getDeltathetaj(), tda.getThetaj());
 
             epoca++;
         }
@@ -122,99 +130,125 @@ public class Principal {
         System.out.println("Entrenamiento finalizado. Épocas: " + epoca);
     }
 
-    public void predecir(BufferedImage img, int nOcultas, double rMen, double rMax, int[][] tk) {
-        // Paso 1: Convertir imagen a matriz de entrada (mN)
+    public int predecir(BufferedImage img, int nOcultas, double rMen, double rMax, int[][] tk) {
         tomarValores(img);
+        boolean iguales = false;
+        int fila = 0;
 
         Operaciones op = new Operaciones();
+        
 
-        // Paso 2: Normalizar
         double[][] patronesNormalizados = op.NormalizarPatrones(mN);
         int nEntradas = patronesNormalizados[0].length;
-        int nSalidas = 3; // ¡Ahora tienes 3 salidas!
+        int nSalidas = tk[0].length;
 
-        // Paso 3: Inicializar pesos y umbrales (normalmente cargarías los entrenados aquí)
         double[][] wij = tda.getWij();
         double[][] thetaj = tda.getThetaj();
-
         double[][] wjk = tda.getWjk();
         double[][] thetak = tda.getThetak();
 
-        // Paso 4: Cálculo hacia adelante
         double[][] rj = op.calcularRj(patronesNormalizados, wij, thetaj);
         double[][] sj = op.calcularS(rj);
         double[][] rk = op.calcularRk(sj, wjk, thetak, nSalidas);
-        double[][] sk = op.calcularS(rk); // [1][3]
+        double[][] sk = op.calcularS(rk);
 
-        // Paso 5: Mostrar resultados de sk
         System.out.println("Salidas sk:");
         for (int i = 0; i < nSalidas; i++) {
             System.out.printf("sk[%d] = %.4f%n", i, sk[0][i]);
         }
 
-        // Paso 6: Convertir a binario simple y guardar en tkPredecido
-        int[][] tkPredecido = new int[1][nSalidas]; // Matriz de 1x3
-
+        int[][] tkPredecido = new int[1][nSalidas];
         System.out.println("Salidas binarizadas:");
         for (int i = 0; i < nSalidas; i++) {
             int salidaBinaria = (sk[0][i] >= 0.5) ? 1 : 0;
             tkPredecido[0][i] = salidaBinaria;
             System.out.println("Binario[" + i + "] = " + salidaBinaria);
         }
-        // Paso 7: Determinar clase esperada y clase predicha
 
         for (int i = 0; i < tk.length; i++) {
-            boolean iguales = true;
-
+            iguales = true;
             for (int j = 0; j < tk[0].length; j++) {
                 if (tkPredecido[0][j] != tk[i][j]) {
                     iguales = false;
                     break;
                 }
             }
-
             if (iguales) {
                 System.out.println("Se parece al patrón P" + (i + 1));
-                break; // si ya encontró coincidencia, se puede salir del for
-            } else {
-                System.out.println("No se reconoce el patron");
+                fila = i;
+                break;
             }
         }
 
+        if (iguales) {
+            return fila;
+        } else {
+            System.out.println("No se reconoce el patrón.");
+            return -1;
+        }
     }
+    public int predecir2(Tdamatriz tda, int nOcultas, double rMen, double rMax, int[][] tk, int filaP) {
 
-    public void tomarValores(BufferedImage img) {
-        int width = img.getWidth();
-        int height = img.getHeight();
-        int totalValores = width * height;
+        boolean iguales = false;
+        int fila = 0;
 
-        mN = new int[1][totalValores];
+        Operaciones op = new Operaciones();
 
-        int index = 0;
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int pixel = img.getRGB(x, y);
+        double[][] patronesNormalizados = new double[1][];
+        patronesNormalizados[0] = tda.getNormalizados()[filaP];
 
-                // Extraer componentes RGB
-                int red = (pixel >> 16) & 0xFF;
-                int green = (pixel >> 8) & 0xFF;
-                int blue = pixel & 0xFF;
+        int nEntradas = patronesNormalizados[0].length;
+        int nSalidas = tk[0].length;
 
-                // Convertir a escala de grises o usar promedio
-                int grayValue = (int) (0.299 * red + 0.587 * green + 0.114 * blue);
+        double[][] wij = tda.getWij();
+        double[][] thetaj = tda.getThetaj();
+        double[][] wjk = tda.getWjk();
+        double[][] thetak = tda.getThetak();
 
-                mN[0][index] = grayValue;
-                index++;
+        double[][] rj = op.calcularRj(patronesNormalizados, wij, thetaj);
+        double[][] sj = op.calcularS(rj);
+        double[][] rk = op.calcularRk(sj, wjk, thetak, nSalidas);
+        double[][] sk = op.calcularS(rk);
 
+        System.out.println("Salidas sk:");
+        for (int i = 0; i < nSalidas; i++) {
+            System.out.printf("sk[%d] = %.4f%n", i, sk[0][i]);
+        }
+
+        int[][] tkPredecido = new int[1][nSalidas];
+        System.out.println("Salidas binarizadas:");
+        for (int i = 0; i < nSalidas; i++) {
+            int salidaBinaria = (sk[0][i] >= 0.5) ? 1 : 0;
+            tkPredecido[0][i] = salidaBinaria;
+            System.out.println("Binario[" + i + "] = " + salidaBinaria);
+        }
+
+        for (int i = 0; i < tk.length; i++) {
+            iguales = true;
+            for (int j = 0; j < tk[0].length; j++) {
+                if (tkPredecido[0][j] != tk[i][j]) {
+                    iguales = false;
+                    break;
+                }
+            }
+            if (iguales) {
+                System.out.println("Se parece al patrón P" + (i + 1));
+                fila = i;
+                break;
             }
         }
 
+        if (iguales) {
+            return fila;
+        } else {
+            System.out.println("No se reconoce el patrón.");
+            return -1;
+        }
     }
+
+    
     
     public Tdamatriz getTda() {
         return this.tda;
     }
-
-   
-
 }
